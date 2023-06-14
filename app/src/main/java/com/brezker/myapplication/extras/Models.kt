@@ -8,6 +8,7 @@ class Models {
         var error:String,
     )
     data class Paciente(
+        var id : Int,
         var nombre: String,
         var nss: String,
         var tipo_sangre: String,
@@ -16,6 +17,7 @@ class Models {
         var domicilio: String,
     )
     data class Doctor(
+        var id : Int,
         var nombre: String,
         var cedula: String,
         var especialidad: String,
@@ -24,11 +26,13 @@ class Models {
         var email: String,
     )
     data class Enfermedad(
+        var id : Int,
         var nombre: String,
         var tipo: String,
         var descripcion: String,
     )
     data class Cita(
+        var id : Int,
         var id_enfermedad: String,
         var id_paciente: String,
         var id_doctor: String,

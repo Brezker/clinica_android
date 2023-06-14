@@ -6,7 +6,6 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.core.os.bundleOf
 import androidx.navigation.Navigation
-import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.brezker.myapplication.R
 import com.google.gson.Gson
@@ -56,6 +55,13 @@ class PacienteAdapter (private val dataSet: MutableList<Models.Paciente>) :
     override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
         // Get element from your dataset at this position and replace the
         // contents of the view with that element
+        viewHolder.itemView.setOnClickListener {
+            var objGson = Gson()
+            var json_paciente = objGson.toJson(dataSet[position])
+            var navController = Navigation.findNavController(it)
+            val bundle = bundleOf("json_paciente" to json_paciente)
+            navController.navigate(R.id.nav_nuevo_paciente, bundle)
+        }
 
         viewHolder.txtNombre.text = dataSet[position]?.nombre
         viewHolder.txtNss.text = dataSet[position]?.nss
