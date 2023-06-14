@@ -32,7 +32,25 @@
     <fragment
         android:id="@+id/nav_nuevo_paciente"
         android:name="com.brezker.myapplication.ui.home.NuevoPacienteFragment"
-        android:label="@string/menu_cita"
-        tools:layout="@layout/fragment_cita" />
+        android:label="@string/nuevo_paciente"
+        tools:layout="@layout/fragment_nuevo_paciente" />
+
+    <fragment
+        android:id="@+id/nav_nuevo_doctor"
+        android:name="com.brezker.myapplication.ui.gallery.NuevoDoctorFragment"
+        android:label="@string/nuevo_doctor"
+        tools:layout="@layout/fragment_nuevo_doctor" />
+
+    <fragment
+        android:id="@+id/nav_nuevo_enfermedad"
+        android:name="com.brezker.myapplication.ui.slideshow.NuevoEnfermedadFragment"
+        android:label="@string/nuevo_enfermedad"
+        tools:layout="@layout/fragment_nuevo_enfermedad" />
+
+    <fragment
+        android:id="@+id/nav_nuevo_cita"
+        android:name="com.brezker.myapplication.ui.cita.NuevoCitaFragment"
+        android:label="@string/nuevo_cita"
+        tools:layout="@layout/fragment_nuevo_cita" />
 
 </navigation>

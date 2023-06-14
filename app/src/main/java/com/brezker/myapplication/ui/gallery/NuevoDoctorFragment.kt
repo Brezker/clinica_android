@@ -1,4 +1,4 @@
-package com.brezker.myapplication.ui.home
+package com.brezker.myapplication.ui.gallery
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -6,8 +6,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import com.brezker.myapplication.databinding.FragmentNuevoPacienteBinding
+import com.brezker.myapplication.R
+import com.brezker.myapplication.databinding.FragmentNuevoDoctorBinding
 import com.brezker.myapplication.extras.Models
+import com.brezker.myapplication.ui.gallery.id_doctor
 import com.google.gson.Gson
 import okhttp3.Call
 import okhttp3.Callback
@@ -20,33 +22,30 @@ import java.io.IOException
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "json_paciente"
+private const val ARG_PARAM1 = "json_doctor"
 private const val ARG_PARAM2 = "param2"
-private var id_paciente: Int = 0
-private lateinit var binding: FragmentNuevoPacienteBinding
+private var id_doctor: Int = 0
+private lateinit var binding: FragmentNuevoDoctorBinding
 
 /**
  * A simple [Fragment] subclass.
- * Use the [NuevoPacienteFragment.newInstance] factory method to
+ * Use the [NuevoDoctorFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class NuevoPacienteFragment : Fragment() {
+class NuevoDoctorFragment : Fragment() {
     // TODO: Rename and change types of parameters
-    private var json_paciente: String? = null
+    private var json_doctor: String? = null
     private var param2: String? = null
 
-    private var _binding: FragmentNuevoPacienteBinding? = null
+    private var _binding: FragmentNuevoDoctorBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         arguments?.let {
-            json_paciente = it.getString(ARG_PARAM1)
+            json_doctor = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
         }
-
-        //setContentView(view)
     }
 
     override fun onCreateView(
@@ -54,23 +53,22 @@ class NuevoPacienteFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        //return inflater.inflate(R.layout.fragment_nuevo_paciente, container, false)
-        _binding = FragmentNuevoPacienteBinding.inflate(inflater, container, false)
+        //return inflater.inflate(R.layout.fragment_nuevo_doctor, container, false)
+        _binding = FragmentNuevoDoctorBinding.inflate(inflater, container, false)
         val view = binding.root
 
-        if(json_paciente != null) {
+        if(json_doctor != null) {
             var gson = Gson()
-            var objPaciente = gson.fromJson(json_paciente, Models.Paciente::class.java)
+            var objDoctor = gson.fromJson(json_doctor, Models.Doctor::class.java)
 
-            id_paciente = objPaciente.id
-            binding.edtNombre.setText(objPaciente.nombre)
-            binding.edtNss.setText(objPaciente.nss)
-            binding.edtTSangre.setText(objPaciente.tipo_sangre)
-            binding.edtAlergias.setText(objPaciente.alergias)
-            binding.edtTelefono.setText(objPaciente.telefono)
-            binding.edtDomicilio.setText(objPaciente.domicilio)
+            id_doctor = objDoctor.id
+            binding.edtNombre.setText(objDoctor.nombre)
+            binding.edtCedula.setText(objDoctor.cedula)
+            binding.edtEspecialidad.setText(objDoctor.especialidad)
+            binding.edtTurno.setText(objDoctor.turno)
+            binding.edtTelefono.setText(objDoctor.telefono)
+            binding.edtEmail.setText(objDoctor.email)
         }
-
         binding.btnGuardar.setOnClickListener{
             guardarDatos()
         }
@@ -84,18 +82,18 @@ class NuevoPacienteFragment : Fragment() {
         val client = OkHttpClient()
 
         val formBody: RequestBody = FormBody.Builder()
-            .add("id", id_paciente.toString())
+            .add("id", id_doctor.toString())
             .add("nombre", binding.edtNombre.text.toString())
-            .add("nss", binding.edtNss.text.toString())
-            .add("tipo_sangre", binding.edtTSangre.text.toString())
-            .add("alergias", binding.edtAlergias.text.toString())
+            .add("cedula", binding.edtCedula.text.toString())
+            .add("especialidad", binding.edtEspecialidad.text.toString())
+            .add("turno", binding.edtTurno.text.toString())
             .add("telefono", binding.edtTelefono.text.toString())
-            .add("domicilio", binding.edtDomicilio.text.toString())
+            .add("email", binding.edtEmail.text.toString())
             .build()
 
         val request = Request.Builder()
             //.url("http://yourip:8000/api/paciente")
-            .url("http://192.168.0.7:8000/api/paciente")
+            .url("http://192.168.0.7:8000/api/doctor")
             .post(formBody)
             .build()
         client.newCall(request).enqueue(object : Callback {
@@ -119,12 +117,12 @@ class NuevoPacienteFragment : Fragment() {
         val client = OkHttpClient()
 
         val formBody: RequestBody = FormBody.Builder()
-            .add("id", id_paciente.toString())
+            .add("id", id_doctor.toString())
             .build()
 
         val request = Request.Builder()
             //.url("http://yourip:8000/api/paciente")
-            .url("http://192.168.0.7:8000/api/paciente/delete")
+            .url("http://192.168.0.7:8000/api/doctor/delete")
             .post(formBody)
             .build()
         client.newCall(request).enqueue(object : Callback {
@@ -143,6 +141,7 @@ class NuevoPacienteFragment : Fragment() {
             }
         })
     }
+
     companion object {
         /**
          * Use this factory method to create a new instance of
@@ -150,12 +149,12 @@ class NuevoPacienteFragment : Fragment() {
          *
          * @param param1 Parameter 1.
          * @param param2 Parameter 2.
-         * @return A new instance of fragment NuevoPacienteFragment.
+         * @return A new instance of fragment NuevoDoctorFragment.
          */
         // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
-            NuevoPacienteFragment().apply {
+            NuevoDoctorFragment().apply {
                 arguments = Bundle().apply {
                     putString(ARG_PARAM1, param1)
                     putString(ARG_PARAM2, param2)

@@ -56,6 +56,13 @@ class DoctorAdapter (private val dataSet: MutableList<Models.Doctor>) :
     override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
         // Get element from your dataset at this position and replace the
         // contents of the view with that element
+        viewHolder.itemView.setOnClickListener {
+            var objGson = Gson()
+            var json_doctor = objGson.toJson(dataSet[position])
+            var navController = Navigation.findNavController(it)
+            val bundle = bundleOf("json_doctor" to json_doctor)
+            navController.navigate(R.id.nav_nuevo_doctor, bundle)
+        }
 
         viewHolder.txtNombre.text = dataSet[position]?.nombre
         viewHolder.txtCedula.text = dataSet[position]?.cedula

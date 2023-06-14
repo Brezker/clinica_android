@@ -7,7 +7,9 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.brezker.myapplication.R
 import com.brezker.myapplication.databinding.FragmentCitaBinding
 import com.brezker.myapplication.extras.Models
 import com.brezker.myapplication.extras.DoctorAdapter
@@ -40,6 +42,11 @@ class CitaFragment : Fragment() {
 
         obtenerDatos()
 
+        binding.fabNuevoCita.setOnClickListener {
+            var navController = findNavController()
+            navController.navigate(R.id.nav_nuevo_cita)
+        }
+
         return root
     }
 
@@ -49,7 +56,7 @@ class CitaFragment : Fragment() {
     }
     fun obtenerDatos(){
         //var url("http://yourip:8000/api/login")
-        var url = "http://192.168.43.228:8000/api/citas"
+        var url = "http://192.168.0.7:8000/api/citas"
 
         var request = Request.Builder()
             .url(url)

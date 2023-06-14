@@ -44,7 +44,7 @@ class HomeFragment : Fragment() {
 
         binding.fabNuevoPaciente.setOnClickListener {
             var navController = findNavController()
-            navController.navigate(R.id.nav_nuevo_paciente)
+            navController.navigate(R.id.nav_nuevo_enfermedad)
         }
 
         obtenerDatos()
@@ -59,7 +59,7 @@ class HomeFragment : Fragment() {
 
     fun obtenerDatos(){
         //var url("http://yourip:8000/api/login")
-        var url = "http://192.168.43.228:8000/api/pacientes"
+        var url = "http://192.168.0.7:8000/api/pacientes"
 
         var request = Request.Builder()
             .url(url)

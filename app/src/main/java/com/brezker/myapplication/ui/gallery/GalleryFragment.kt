@@ -7,7 +7,9 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.brezker.myapplication.R
 import com.brezker.myapplication.databinding.FragmentGalleryBinding
 import com.brezker.myapplication.extras.Models
 import com.brezker.myapplication.extras.DoctorAdapter
@@ -38,6 +40,11 @@ class GalleryFragment : Fragment() {
         _binding = FragmentGalleryBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
+        binding.fabNuevoDoctor.setOnClickListener {
+            var navController = findNavController()
+            navController.navigate(R.id.nav_nuevo_doctor)
+        }
+
         obtenerDatos()
 
         return root
@@ -49,7 +56,7 @@ class GalleryFragment : Fragment() {
     }
     fun obtenerDatos(){
         //var url("http://yourip:8000/api/login")
-        var url = "http://192.168.43.228:8000/api/doctores"
+        var url = "http://192.168.0.7:8000/api/doctores"
 
         var request = Request.Builder()
             .url(url)

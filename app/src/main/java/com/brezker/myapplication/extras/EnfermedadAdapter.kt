@@ -56,6 +56,13 @@ class EnfermedadAdapter (private val dataSet: MutableList<Models.Enfermedad>) :
     override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
         // Get element from your dataset at this position and replace the
         // contents of the view with that element
+        viewHolder.itemView.setOnClickListener {
+            var objGson = Gson()
+            var json_enfermedad = objGson.toJson(dataSet[position])
+            var navController = Navigation.findNavController(it)
+            val bundle = bundleOf("json_enfermedad" to json_enfermedad)
+            navController.navigate(R.id.nav_nuevo_enfermedad, bundle)
+        }
 
         viewHolder.txtNombre.text = dataSet[position]?.nombre
         viewHolder.txtTipo.text = dataSet[position]?.tipo

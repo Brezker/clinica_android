@@ -56,6 +56,13 @@ class CitaAdapter (private val dataSet: MutableList<Models.Cita>) :
     override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
         // Get element from your dataset at this position and replace the
         // contents of the view with that element
+        viewHolder.itemView.setOnClickListener {
+            var objGson = Gson()
+            var json_cita = objGson.toJson(dataSet[position])
+            var navController = Navigation.findNavController(it)
+            val bundle = bundleOf("json_cita" to json_cita)
+            navController.navigate(R.id.nav_nuevo_cita, bundle)
+        }
 
         viewHolder.txtIdenfermedad.text = dataSet[position]?.id_enfermedad
         viewHolder.txtIdpaciente.text = dataSet[position]?.id_paciente
