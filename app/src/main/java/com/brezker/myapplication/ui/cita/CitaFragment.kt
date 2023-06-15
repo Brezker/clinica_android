@@ -11,6 +11,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.brezker.myapplication.R
 import com.brezker.myapplication.databinding.FragmentCitaBinding
+import com.brezker.myapplication.extras.CitaAdapter
 import com.brezker.myapplication.extras.Models
 import com.brezker.myapplication.extras.DoctorAdapter
 import com.google.gson.Gson
@@ -40,12 +41,12 @@ class CitaFragment : Fragment() {
         _binding = FragmentCitaBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        obtenerDatos()
-
         binding.fabNuevoCita.setOnClickListener {
             var navController = findNavController()
             navController.navigate(R.id.nav_nuevo_cita)
         }
+
+        obtenerDatos()
 
         return root
     }
@@ -70,7 +71,7 @@ class CitaFragment : Fragment() {
         client.newCall(request).enqueue(object : Callback {
             override fun onFailure(call: Call, e: IOException) {
                 activity?.runOnUiThread {
-                    Toast.makeText(context, "Ocurrio un error: " + e.message.toString(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, "Ocurrio un error: " + e.message.toString(), Toast.LENGTH_SHORT).show()
                 }
             }
 
@@ -80,8 +81,8 @@ class CitaFragment : Fragment() {
                 println("Respuesta: "+ respuesta)
 
                 activity?.runOnUiThread {
-                    var listItems = gson.fromJson(respuesta, Array<Models.Doctor>::class.java)
-                    val adapter = DoctorAdapter(listItems.toMutableList())
+                    var listItems = gson.fromJson(respuesta, Array<Models.Cita>::class.java)
+                    val adapter = CitaAdapter(listItems.toMutableList())
                     binding.rvDatosCita.layoutManager = LinearLayoutManager(context)
                     binding.rvDatosCita.adapter = adapter
                 }
