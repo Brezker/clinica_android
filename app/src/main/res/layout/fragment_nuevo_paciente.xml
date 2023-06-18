@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.home.HomeFragment">
-
+    <!--
     <EditText
         android:id="@+id/edtTSangre"
         android:layout_width="217dp"
@@ -20,7 +19,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edtNss"
         app:layout_constraintVertical_bias="0.035" />
-
+-->
     <EditText
         android:id="@+id/edtNombre"
         android:layout_width="214dp"
@@ -128,5 +127,19 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.783" />
+
+    <Spinner
+        android:id="@+id/spiSangre"
+        android:layout_width="219dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="104dp"
+        android:backgroundTint="#EC407A"
+        android:entries="@array/tipos_sangre"
+        android:text="Tipo de Sangre"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edtNss"
+        app:layout_constraintVertical_bias="0.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

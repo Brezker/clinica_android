@@ -57,7 +57,7 @@ class CitaFragment : Fragment() {
     }
     fun obtenerDatos(){
         //var url("http://yourip:8000/api/login")
-        var url = "http://192.168.0.7:8000/api/citas"
+        var url = "http://192.168.100.21:8000/api/citas"
 
         var request = Request.Builder()
             .url(url)

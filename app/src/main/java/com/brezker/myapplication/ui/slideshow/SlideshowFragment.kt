@@ -57,7 +57,7 @@ class SlideshowFragment : Fragment() {
     }
     fun obtenerDatos(){
         //var url("http://yourip:8000/api/login")
-        var url = "http://192.168.0.7:8000/api/enfermedades"
+        var url = "http://192.168.100.21:8000/api/enfermedades"
 
         var request = Request.Builder()
             .url(url)

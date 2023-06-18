@@ -87,7 +87,7 @@ class NuevoEnfermedadFragment : Fragment() {
 
         val request = Request.Builder()
             //.url("http://yourip:8000/api/enfermedad")
-            .url("http://192.168.0.7:8000/api/enfermedad")
+            .url("http://192.168.100.21:8000/api/enfermedad")
             .post(formBody)
             .build()
         client.newCall(request).enqueue(object : Callback {

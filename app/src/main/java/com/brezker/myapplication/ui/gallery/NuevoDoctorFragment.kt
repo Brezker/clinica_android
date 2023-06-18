@@ -122,7 +122,7 @@ class NuevoDoctorFragment : Fragment() {
 
         val request = Request.Builder()
             //.url("http://yourip:8000/api/paciente")
-            .url("http://192.168.0.7:8000/api/doctor/delete")
+            .url("http://192.168.100.21:8000/api/doctor/delete")
             .post(formBody)
             .build()
         client.newCall(request).enqueue(object : Callback {

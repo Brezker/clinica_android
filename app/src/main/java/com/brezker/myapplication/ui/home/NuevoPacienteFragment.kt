@@ -1,11 +1,16 @@
 package com.brezker.myapplication.ui.home
 
+import android.app.Activity
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
+import android.widget.Spinner
 import android.widget.Toast
+import androidx.fragment.app.Fragment
+import com.brezker.myapplication.R
 import com.brezker.myapplication.databinding.FragmentNuevoPacienteBinding
 import com.brezker.myapplication.extras.Models
 import com.google.gson.Gson
@@ -21,15 +26,18 @@ import java.io.IOException
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 private const val ARG_PARAM1 = "json_paciente"
-private const val ARG_PARAM2 = "param2"
+private val tiposSangre = arrayOf("A","B","AB","O")
 private var id_paciente: Int = 0
 private lateinit var binding: FragmentNuevoPacienteBinding
+//private lateinit var spinner: Spinner
+private var selectedType: String = ""
 
 /**
  * A simple [Fragment] subclass.
  * Use the [NuevoPacienteFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
+
 class NuevoPacienteFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var json_paciente: String? = null
@@ -43,10 +51,8 @@ class NuevoPacienteFragment : Fragment() {
 
         arguments?.let {
             json_paciente = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
+            //param2 = it.getString(ARG_PARAM2)
         }
-
-        //setContentView(view)
     }
 
     override fun onCreateView(
@@ -58,6 +64,21 @@ class NuevoPacienteFragment : Fragment() {
         _binding = FragmentNuevoPacienteBinding.inflate(inflater, container, false)
         val view = binding.root
 
+        binding.spiSangre.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
+                selectedType = parent?.getItemAtPosition(position) as String
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+                // No se seleccionó ningún valor
+            }
+        }
+
         if(json_paciente != null) {
             var gson = Gson()
             var objPaciente = gson.fromJson(json_paciente, Models.Paciente::class.java)
@@ -65,7 +86,7 @@ class NuevoPacienteFragment : Fragment() {
             id_paciente = objPaciente.id
             binding.edtNombre.setText(objPaciente.nombre)
             binding.edtNss.setText(objPaciente.nss)
-            binding.edtTSangre.setText(objPaciente.tipo_sangre)
+            //binding.edtTSangre.setText(objPaciente.tipo_sangre)
             binding.edtAlergias.setText(objPaciente.alergias)
             binding.edtTelefono.setText(objPaciente.telefono)
             binding.edtDomicilio.setText(objPaciente.domicilio)
@@ -87,7 +108,7 @@ class NuevoPacienteFragment : Fragment() {
             .add("id", id_paciente.toString())
             .add("nombre", binding.edtNombre.text.toString())
             .add("nss", binding.edtNss.text.toString())
-            .add("tipo_sangre", binding.edtTSangre.text.toString())
+            .add("tipo_sangre", selectedType)
             .add("alergias", binding.edtAlergias.text.toString())
             .add("telefono", binding.edtTelefono.text.toString())
             .add("domicilio", binding.edtDomicilio.text.toString())
@@ -95,7 +116,7 @@ class NuevoPacienteFragment : Fragment() {
 
         val request = Request.Builder()
             //.url("http://yourip:8000/api/paciente")
-            .url("http://192.168.0.7:8000/api/paciente")
+            .url("http://192.168.100.21:8000/api/paciente")
             .post(formBody)
             .build()
         client.newCall(request).enqueue(object : Callback {
@@ -158,7 +179,7 @@ class NuevoPacienteFragment : Fragment() {
             NuevoPacienteFragment().apply {
                 arguments = Bundle().apply {
                     putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+                    //putString(ARG_PARAM2, param2)
                 }
             }
     }
