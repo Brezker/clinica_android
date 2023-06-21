@@ -16,8 +16,11 @@
     <string name="nuevo_doctor">Doctor</string>
     <string name="nuevo_enfermedad">Enfermedad</string>
     <string name="nuevo_cita">Cita</string>
+
+    <string name="hint_tsangre">Tipo de sangre</string>
     <!-- Selects -->
     <string-array name="tipos_sangre">
+        <item>Tipo de sangre</item>
         <item>O+</item>
         <item>O-</item>
         <item>A+</item>

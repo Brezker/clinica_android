@@ -26,10 +26,11 @@ import java.io.IOException
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 private const val ARG_PARAM1 = "json_paciente"
-private val tiposSangre = arrayOf("A","B","AB","O")
+//private val tiposSangre = arrayOf("A","B","AB","O")
 private var id_paciente: Int = 0
 private lateinit var binding: FragmentNuevoPacienteBinding
-//private lateinit var spinner: Spinner
+private lateinit var spinner: Spinner
+//private var selectedType: String? = null
 private var selectedType: String = ""
 
 /**
@@ -64,6 +65,11 @@ class NuevoPacienteFragment : Fragment() {
         _binding = FragmentNuevoPacienteBinding.inflate(inflater, container, false)
         val view = binding.root
 
+        //val tiposSangre = listOf("Seleccione un tipo de sangre", "A", "B", "AB", "O")
+        //val adapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, tiposSangre)
+        //adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        //binding.spiSangre.adapter = adapter
+
         binding.spiSangre.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(
                 parent: AdapterView<*>?,
@@ -71,6 +77,10 @@ class NuevoPacienteFragment : Fragment() {
                 position: Int,
                 id: Long
             ) {
+                if (position != 0){
+                    //Codigo para mostrar
+                    //println(parent)
+                }
                 selectedType = parent?.getItemAtPosition(position) as String
             }
 
@@ -90,6 +100,25 @@ class NuevoPacienteFragment : Fragment() {
             binding.edtAlergias.setText(objPaciente.alergias)
             binding.edtTelefono.setText(objPaciente.telefono)
             binding.edtDomicilio.setText(objPaciente.domicilio)
+            //for
+            /*for (){
+
+            }*/
+            //println(binding.spiSangre.selectedItem)
+            println(objPaciente.tipo_sangre)
+            val arrayStrings = resources.getStringArray(R.array.tipos_sangre)
+            var count=0
+            for (item in arrayStrings) {
+                count=count+1
+                if (item==objPaciente.tipo_sangre) {
+                    //binding.spiSangre.setSelection(7)
+                    count=count-1
+                    println("HEllo World "+count.toString())
+                    binding.spiSangre.setSelection(count)
+                }
+            }
+            //println(objPaciente)
+            //binding.spiSangre.setSelection(1)
         }
 
         binding.btnGuardar.setOnClickListener{
@@ -145,7 +174,7 @@ class NuevoPacienteFragment : Fragment() {
 
         val request = Request.Builder()
             //.url("http://yourip:8000/api/paciente")
-            .url("http://192.168.0.7:8000/api/paciente/delete")
+            .url("http://192.168.100.21:8000/api/paciente/delete")
             .post(formBody)
             .build()
         client.newCall(request).enqueue(object : Callback {
