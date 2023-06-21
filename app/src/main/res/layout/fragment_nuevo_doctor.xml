@@ -7,6 +7,19 @@
     android:layout_height="match_parent"
     tools:context=".ui.gallery.NuevoDoctorFragment">
 
+    <Spinner
+        android:id="@+id/spiTurno"
+        android:layout_width="219dp"
+        android:layout_height="35dp"
+        android:layout_marginEnd="100dp"
+        android:layout_marginBottom="420dp"
+        android:backgroundTint="#EC407A"
+        android:spinnerMode="dialog"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edtEspecialidad"
+        app:layout_constraintVertical_bias="1.0" />
+
     <EditText
         android:id="@+id/edtEspecialidad"
         android:layout_width="217dp"
@@ -62,7 +75,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.045" />
 
-    <EditText
+    <!--<EditText
         android:id="@+id/edtTurno"
         android:layout_width="211dp"
         android:layout_height="49dp"
@@ -74,7 +87,7 @@
         app:layout_constraintHorizontal_bias="0.478"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.407" />
+        app:layout_constraintVertical_bias="0.407" />-->
 
     <EditText
         android:id="@+id/edtTelefono"
