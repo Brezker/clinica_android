@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import com.brezker.myapplication.EnvUrl
 import com.brezker.myapplication.R
 import com.brezker.myapplication.databinding.FragmentNuevoCitaBinding
 import com.brezker.myapplication.extras.Models
@@ -63,7 +64,7 @@ class NuevoCitaFragment : Fragment() {
             id_cita = objCita.id
             binding.edtIdenfermedad.setText(objCita.id_enfermedad)
             binding.edtIdpaciente.setText(objCita.id_paciente)
-            binding.edtIddoctor.setText(objCita.id_doctor)
+            //binding.edtIddoctor.setText(objCita.id_doctor)
             binding.edtConsultorio.setText(objCita.consultorio)
             binding.edtDomicilioc.setText(objCita.domicilio)
             binding.edtFecha.setText(objCita.fecha)
@@ -85,7 +86,7 @@ class NuevoCitaFragment : Fragment() {
             .add("id", id_cita.toString())
             .add("id_enfermedad", binding.edtIdenfermedad.text.toString())
             .add("id_paciente", binding.edtIdpaciente.text.toString())
-            .add("id_doctor", binding.edtIddoctor.text.toString())
+            //.add("id_doctor", binding.edtIddoctor.text.toString())
             .add("consultorio", binding.edtConsultorio.text.toString())
             .add("domicilio", binding.edtDomicilioc.text.toString())
             .add("fecha", binding.edtFecha.text.toString())
@@ -93,7 +94,7 @@ class NuevoCitaFragment : Fragment() {
 
         val request = Request.Builder()
             //.url("http://yourip:8000/api/paciente")
-            .url("http://192.168.100.21:8000/api/cita")
+            .url("http://"+EnvUrl.UrlVal+":8000/api/cita")
             .post(formBody)
             .build()
         client.newCall(request).enqueue(object : Callback {
@@ -122,7 +123,8 @@ class NuevoCitaFragment : Fragment() {
 
         val request = Request.Builder()
             //.url("http://yourip:8000/api/paciente")
-            .url("http://192.168.100.21:8000/api/cita/delete")
+            //.url("http://192.168.43.228:8000/api/cita/delete")
+            .url("http://"+EnvUrl.UrlVal+":8000/api/paciente")
             .post(formBody)
             .build()
         client.newCall(request).enqueue(object : Callback {

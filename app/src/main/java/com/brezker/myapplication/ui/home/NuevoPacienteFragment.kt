@@ -10,6 +10,7 @@ import android.widget.ArrayAdapter
 import android.widget.Spinner
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import com.brezker.myapplication.EnvUrl
 import com.brezker.myapplication.R
 import com.brezker.myapplication.databinding.FragmentNuevoPacienteBinding
 import com.brezker.myapplication.extras.Models
@@ -145,7 +146,7 @@ class NuevoPacienteFragment : Fragment() {
 
         val request = Request.Builder()
             //.url("http://yourip:8000/api/paciente")
-            .url("http://192.168.100.21:8000/api/paciente")
+            .url("http://"+EnvUrl.UrlVal+":8000/api/paciente")
             .post(formBody)
             .build()
         client.newCall(request).enqueue(object : Callback {
@@ -174,7 +175,7 @@ class NuevoPacienteFragment : Fragment() {
 
         val request = Request.Builder()
             //.url("http://yourip:8000/api/paciente")
-            .url("http://192.168.100.21:8000/api/paciente/delete")
+            .url("http://"+EnvUrl.UrlVal+":8000/api/paciente/delete")
             .post(formBody)
             .build()
         client.newCall(request).enqueue(object : Callback {

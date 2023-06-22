@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.brezker.myapplication.EnvUrl
 import com.brezker.myapplication.R
 import com.brezker.myapplication.databinding.FragmentHomeBinding
 import com.brezker.myapplication.extras.Models
@@ -59,7 +60,7 @@ class HomeFragment : Fragment() {
 
     fun obtenerDatos(){
         //var url("http://yourip:8000/api/login")
-        var url = "http://192.168.100.21:8000/api/pacientes"
+        var url = "http://"+EnvUrl.UrlVal+":8000/api/pacientes"
 
         var request = Request.Builder()
             .url(url)

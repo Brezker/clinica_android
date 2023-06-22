@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import com.brezker.myapplication.EnvUrl
 import com.brezker.myapplication.R
 import com.brezker.myapplication.databinding.FragmentNuevoEnfermedadBinding
 import com.brezker.myapplication.extras.Models
@@ -87,7 +88,7 @@ class NuevoEnfermedadFragment : Fragment() {
 
         val request = Request.Builder()
             //.url("http://yourip:8000/api/enfermedad")
-            .url("http://192.168.100.21:8000/api/enfermedad")
+            .url("http://"+EnvUrl.UrlVal+":8000/api/enfermedad")
             .post(formBody)
             .build()
         client.newCall(request).enqueue(object : Callback {
@@ -116,7 +117,7 @@ class NuevoEnfermedadFragment : Fragment() {
 
         val request = Request.Builder()
             //.url("http://yourip:8000/api/enfermedad")
-            .url("http://192.168.100.21:8000/api/enfermedad/delete")
+            .url("http://"+EnvUrl.UrlVal+":8000/api/enfermedad/delete")
             .post(formBody)
             .build()
         client.newCall(request).enqueue(object : Callback {
