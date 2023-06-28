@@ -30,6 +30,8 @@ private const val ARG_PARAM2 = "param2"
 private var id_cita: Int = 0
 //private var idDoctor: Int = 0
 private var idDoctor: Int? = null
+private var idEnfermedad: Int? = null
+private var idPaciente: Int? = null
 
 private lateinit var binding: FragmentNuevoCitaBinding
 
@@ -74,25 +76,7 @@ class NuevoCitaFragment : Fragment() {
             binding.edtConsultorio.setText(objCita.consultorio)
             binding.edtDomicilioc.setText(objCita.domicilio)
             binding.edtFecha.setText(objCita.fecha)
-            println(objCita.id_doctor)
-
-            val doctorValues = ArrayList<String>()
-            //val listaDoctores: Array<Models.Doctor> = obtenerDoctor()
-            var countd=0
-            /*for (item in listaDoctores) {
-                countd=countd+1
-                if (item==objCita.id_doctor) {
-                    countd=countd-1
-                    println("HEllo World "+countd.toString())
-                    binding.spiDoctor.setSelection(countd)
-                }
-            }*/
         }
-        /*binding.spiDoctor.{
-            //obtenerDoctor()
-            //println(obtenerDoctor().toString())
-            println("hola")
-        }*/
         binding.btnGuardar.setOnClickListener{
             guardarDatos()
 
@@ -222,7 +206,6 @@ class NuevoCitaFragment : Fragment() {
                             val displayText = "${doctor.nombre}"
                             (view as TextView).text = displayText
                             return view
-                            //binding.spiDoctor.setSelection(4)
                         }
                     }
 
