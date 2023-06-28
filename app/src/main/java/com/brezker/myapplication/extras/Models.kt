@@ -39,5 +39,8 @@ class Models {
         var consultorio: String,
         var domicilio: String,
         var fecha: String,
+        var nombre_enfermedad: String,
+        var nombre_paciente: String,
+        var nombre_doctor: String,
     )
 }

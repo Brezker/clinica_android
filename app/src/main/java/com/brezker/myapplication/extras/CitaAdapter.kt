@@ -64,8 +64,8 @@ class CitaAdapter (private val dataSet: MutableList<Models.Cita>) :
             navController.navigate(R.id.nav_nuevo_cita, bundle)
         }
 
-        viewHolder.txtIdenfermedad.text = dataSet[position]?.id_enfermedad
-        viewHolder.txtIdpaciente.text = dataSet[position]?.id_paciente
+        viewHolder.txtIdenfermedad.text = dataSet[position]?.nombre_enfermedad
+        viewHolder.txtIdpaciente.text = dataSet[position]?.nombre_paciente
 
     }
 
