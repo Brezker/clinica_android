@@ -7,20 +7,6 @@
     android:layout_height="match_parent"
     tools:context=".ui.cita.NuevoCitaFragment">
 
-    <!--<EditText
-        android:id="@+id/edtIddoctor"
-        android:layout_width="217dp"
-        android:layout_height="40dp"
-        android:ems="10"
-        android:hint="Id Doctor"
-        android:inputType="text"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.482"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edtIdpaciente"
-        app:layout_constraintVertical_bias="0.035" />-->
-
     <Spinner
         android:id="@+id/spiDoctor"
         android:layout_width="219dp"
@@ -90,43 +76,19 @@
         android:id="@+id/edtFecha"
         android:layout_width="217dp"
         android:layout_height="40dp"
+        android:background="@android:drawable/editbox_background"
+        android:cursorVisible="false"
+        android:focusable="false"
+        android:inputType="none"
+        android:onClick="showDateTimePicker"
         android:ems="10"
         android:hint="Fecha"
-        android:inputType="text"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.453"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edtDomicilioc"
         app:layout_constraintVertical_bias="0.031" />
-
-    <!--<EditText
-        android:id="@+id/edtIdenfermedad"
-        android:layout_width="214dp"
-        android:layout_height="40dp"
-        android:ems="10"
-        android:hint="Id Enfermedad"
-        android:inputType="text"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.446"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.137" />-->
-
-    <!--<EditText
-        android:id="@+id/edtIdpaciente"
-        android:layout_width="213dp"
-        android:layout_height="40dp"
-        android:ems="10"
-        android:hint="Id Paciente"
-        android:inputType="text"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.464"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spiEnfermedad"
-        app:layout_constraintVertical_bias="0.034" />-->
 
     <TextView
         android:id="@+id/textView2"

@@ -1,5 +1,7 @@
 package com.brezker.myapplication.ui.cita
 
+import android.app.DatePickerDialog
+import android.app.TimePickerDialog
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -7,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import com.brezker.myapplication.EnvUrl
@@ -22,6 +25,9 @@ import okhttp3.Request
 import okhttp3.RequestBody
 import okhttp3.Response
 import java.io.IOException
+import java.text.SimpleDateFormat
+import java.util.Calendar
+import java.util.Locale
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -44,6 +50,8 @@ class NuevoCitaFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var json_cita: String? = null
     private var param2: String? = null
+    private lateinit var editTextDateTime: EditText
+    private val calendar: Calendar = Calendar.getInstance()
 
     private var _binding: FragmentNuevoCitaBinding? = null
     private val binding get() = _binding!!
@@ -67,6 +75,10 @@ class NuevoCitaFragment : Fragment() {
         obtenerDoctor()
         obtenerEnfermedad()
         obtenerPaciente()
+        editTextDateTime = view.findViewById(R.id.edtFecha)
+        editTextDateTime.setOnClickListener {
+            showDateTimePicker()
+        }
         if(json_cita != null) {
             var gson = Gson()
             var objCita = gson.fromJson(json_cita, Models.Cita::class.java)
@@ -390,6 +402,39 @@ class NuevoCitaFragment : Fragment() {
                 }
             }
         })
+    }
+
+    private fun showDateTimePicker() {
+        val datePickerDialog = DatePickerDialog(
+            requireContext(),
+            { _, year, month, dayOfMonth ->
+                calendar.set(Calendar.YEAR, year)
+                calendar.set(Calendar.MONTH, month)
+                calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth)
+                showTimePicker()
+            },
+            calendar.get(Calendar.YEAR),
+            calendar.get(Calendar.MONTH),
+            calendar.get(Calendar.DAY_OF_MONTH)
+        )
+        datePickerDialog.show()
+    }
+
+    private fun showTimePicker() {
+        val timePickerDialog = TimePickerDialog(
+            requireContext(),
+            { _, hourOfDay, minute ->
+                calendar.set(Calendar.HOUR_OF_DAY, hourOfDay)
+                calendar.set(Calendar.MINUTE, minute)
+                val dateTimeFormat = SimpleDateFormat("yyyy/MM/dd HH:mm", Locale.getDefault())
+                val dateTime = dateTimeFormat.format(calendar.time)
+                editTextDateTime.setText(dateTime)
+            },
+            calendar.get(Calendar.HOUR_OF_DAY),
+            calendar.get(Calendar.MINUTE),
+            false
+        )
+        timePickerDialog.show()
     }
 
     companion object {
