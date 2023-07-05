@@ -31,8 +31,32 @@
         android:spinnerMode="dialog"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edtIdpaciente"
+        app:layout_constraintTop_toBottomOf="@+id/spiEnfermedad"
         app:layout_constraintVertical_bias="1.0" />
+
+    <Spinner
+        android:id="@+id/spiPaciente"
+        android:layout_width="219dp"
+        android:layout_height="35dp"
+        android:layout_marginEnd="104dp"
+        android:layout_marginBottom="488dp"
+        android:backgroundTint="#EC407A"
+        android:spinnerMode="dialog"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spiEnfermedad"
+        app:layout_constraintVertical_bias="0.282" />
+
+    <Spinner
+        android:id="@+id/spiEnfermedad"
+        android:layout_width="219dp"
+        android:layout_height="35dp"
+        android:layout_marginEnd="104dp"
+        android:layout_marginBottom="608dp"
+        android:backgroundTint="#EC407A"
+        android:spinnerMode="dialog"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <EditText
         android:id="@+id/edtConsultorio"
@@ -76,7 +100,7 @@
         app:layout_constraintTop_toBottomOf="@+id/edtDomicilioc"
         app:layout_constraintVertical_bias="0.031" />
 
-    <EditText
+    <!--<EditText
         android:id="@+id/edtIdenfermedad"
         android:layout_width="214dp"
         android:layout_height="40dp"
@@ -88,9 +112,9 @@
         app:layout_constraintHorizontal_bias="0.446"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.137" />
+        app:layout_constraintVertical_bias="0.137" />-->
 
-    <EditText
+    <!--<EditText
         android:id="@+id/edtIdpaciente"
         android:layout_width="213dp"
         android:layout_height="40dp"
@@ -101,8 +125,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.464"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edtIdenfermedad"
-        app:layout_constraintVertical_bias="0.034" />
+        app:layout_constraintTop_toBottomOf="@+id/spiEnfermedad"
+        app:layout_constraintVertical_bias="0.034" />-->
 
     <TextView
         android:id="@+id/textView2"
